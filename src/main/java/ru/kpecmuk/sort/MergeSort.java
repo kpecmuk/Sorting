@@ -38,10 +38,8 @@ class MergeSort {
         if (array.length > 1) {
             int[] left = leftHalf(array);
             int[] right = rightHalf(array);
-
             Sort(left);
             Sort(right);
-
             merge(array, left, right);
         }
     }
@@ -49,7 +47,7 @@ class MergeSort {
     private int[] leftHalf(int[] array) {
         int size1 = array.length / 2;
         int[] left = new int[size1];
-        System.arraycopy(array, 0, left, 0, size1 - 1);
+        System.arraycopy(array, 0, left, 0, size1);
         return left;
     }
 
@@ -57,21 +55,29 @@ class MergeSort {
         int size1 = array.length / 2;
         int size2 = array.length - size1;
         int[] right = new int[size2];
-        System.arraycopy(array, 0, right, 0, size1 - 1);
+        System.arraycopy(array, size1, right, 0, size1);
         return right;
     }
 
+    /**
+     * Изначально левый и правый массивы уже отсортированы
+     * Надо только путем сравнения выстроить результат в массив result,
+     * сравнивая и передвигая итераторы leftPos и rightPos
+     *
+     * @param result Объединённый отсортированный массив
+     * @param left   левый массив
+     * @param right  правый массив
+     */
     private void merge(int[] result, int[] left, int[] right) {
-        int i1 = 0;
-        int i2 = 0;
-
+        int leftPos = 0;
+        int rightPos = 0;
         for (int i = 0; i < result.length; i++) {
-            if (i2 >= right.length || (i1 < left.length && left[i1] <= right[i2])) {
-                result[i] = left[i1];
-                i1++;
+            if (rightPos >= right.length || (leftPos < left.length && left[leftPos] <= right[rightPos])) {
+                result[i] = left[leftPos];
+                leftPos++;
             } else {
-                result[i] = right[i2];
-                i2++;
+                result[i] = right[rightPos];
+                rightPos++;
             }
         }
     }
