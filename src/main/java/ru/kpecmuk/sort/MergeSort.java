@@ -3,9 +3,10 @@ package ru.kpecmuk.sort;
 import java.util.Arrays;
 
 /**
- * Created by User on 10.02.2017.
+ * MERGE SORT
+ * Created by Kpecmuk on 10.02.2017.
  */
-public class MergeSort {
+class MergeSort {
     private int[] array;
 
     /**
@@ -13,27 +14,27 @@ public class MergeSort {
      *
      * @param array массив int[]
      */
-    public MergeSort(int[] array) {
+    MergeSort(int[] array) {
         this.array = array;
     }
 
-    public void ShowArray() {
+    void ShowArray() {
         System.out.println("Array: " + Arrays.toString(this.array));
     }
 
     /**
      * Возвращает ссылку на массив int[]
      */
-    public int[] getArray() {
+    int[] getArray() {
         return this.array;
     }
 
     /**
      * Сортировка слиянием
      *
-     * @param array
+     * @param array Массив для сортировки
      */
-    public void Sort(int[] array) {
+    void Sort(int[] array) {
         if (array.length > 1) {
             int[] left = leftHalf(array);
             int[] right = rightHalf(array);
@@ -48,9 +49,7 @@ public class MergeSort {
     private int[] leftHalf(int[] array) {
         int size1 = array.length / 2;
         int[] left = new int[size1];
-        for (int i = 0; i < size1; i++) {
-            left[i] = array[i];
-        }
+        System.arraycopy(array, 0, left, 0, size1 - 1);
         return left;
     }
 
@@ -58,9 +57,7 @@ public class MergeSort {
         int size1 = array.length / 2;
         int size2 = array.length - size1;
         int[] right = new int[size2];
-        for (int i = 0; i < size2; i++) {
-            right[i] = array[i + size1];
-        }
+        System.arraycopy(array, 0, right, 0, size1 - 1);
         return right;
     }
 

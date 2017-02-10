@@ -1,5 +1,8 @@
 package ru.kpecmuk.sort;
 
+/** Проверки сортировки слиянием
+ * Created by Kpecmuk on 10.02.2017.
+ */
 public class Main {
     public static void main(String[] args) {
 
