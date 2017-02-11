@@ -31,32 +31,19 @@ class MergeSort {
 
     /**
      * Сортировка слиянием
+     * copyOfRange сам выделяет память под массив
      *
      * @param array Массив для сортировки
      */
     void Sort(int[] array) {
         if (array.length > 1) {
-            int[] left = leftHalf(array);
-            int[] right = rightHalf(array);
+            int half = array.length / 2;
+            int[] left = Arrays.copyOfRange(array, 0, half);
+            int[] right = Arrays.copyOfRange(array, half, array.length);
             Sort(left);
             Sort(right);
             merge(array, left, right);
         }
-    }
-
-    private int[] leftHalf(int[] array) {
-        int size1 = array.length / 2;
-        int[] left = new int[size1];
-        System.arraycopy(array, 0, left, 0, size1);
-        return left;
-    }
-
-    private int[] rightHalf(int[] array) {
-        int size1 = array.length / 2;
-        int size2 = array.length - size1;
-        int[] right = new int[size2];
-        System.arraycopy(array, size1, right, 0, size2);
-        return right;
     }
 
     /**
@@ -69,15 +56,15 @@ class MergeSort {
      * @param right  правый массив
      */
     private void merge(int[] result, int[] left, int[] right) {
-        int leftPos = 0;
-        int rightPos = 0;
+        int leftArrayPos = 0;
+        int rightArrayPos = 0;
         for (int i = 0; i < result.length; i++) {
-            if (rightPos >= right.length || (leftPos < left.length && left[leftPos] <= right[rightPos])) {
-                result[i] = left[leftPos];
-                leftPos++;
+            if (rightArrayPos >= right.length || (leftArrayPos < left.length && left[leftArrayPos] <= right[rightArrayPos])) {
+                result[i] = left[leftArrayPos];
+                leftArrayPos++;
             } else {
-                result[i] = right[rightPos];
-                rightPos++;
+                result[i] = right[rightArrayPos];
+                rightArrayPos++;
             }
         }
     }
