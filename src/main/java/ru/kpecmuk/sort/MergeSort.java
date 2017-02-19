@@ -1,5 +1,8 @@
 package ru.kpecmuk.sort;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Arrays;
 
 /**
@@ -7,6 +10,7 @@ import java.util.Arrays;
  * Created by Kpecmuk on 10.02.2017.
  */
 class MergeSort {
+    private final Logger logger = LoggerFactory.getLogger(MergeSort.class.getSimpleName());
     private int[] array;
 
     /**
@@ -36,6 +40,7 @@ class MergeSort {
      * @param array Массив для сортировки
      */
     void Sort(int[] array) {
+        logger.info("Inside array " + Arrays.toString(array));
         if (array.length > 1) {
             int half = array.length / 2;
             int[] left = Arrays.copyOfRange(array, 0, half);
@@ -56,6 +61,7 @@ class MergeSort {
      * @param right  правый массив
      */
     private void merge(int[] result, int[] left, int[] right) {
+        logger.info("Inside merge " + Arrays.toString(result) + " --- " + Arrays.toString(left) + " --- " + Arrays.toString(right));
         int leftArrayPos = 0;
         int rightArrayPos = 0;
         for (int i = 0; i < result.length; i++) {
