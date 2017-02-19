@@ -17,7 +17,7 @@ public class Main {
 
 
         MergeSort mergeSort = new MergeSort(new int[]{10, 1, 9, 2, 8, 3, 7, 4, 6, 5});
-        log.info(" --- Inside main --- Array : " + Arrays.toString(mergeSort.getArray()) + " created");
+        log.info("--> Array : " + Arrays.toString(mergeSort.getArray()) + " created");
 
         mergeSort.Sort(mergeSort.getArray());
         mergeSort.ShowArray();
