@@ -3,6 +3,7 @@
 test/
 target/
 *.iml
+*.xml
 *.class
 *.jar
 *.war
